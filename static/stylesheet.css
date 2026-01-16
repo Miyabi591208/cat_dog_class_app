@@ -1,0 +1,142 @@
+/* =======================
+   Reset / Base
+   ======================= */
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+img { display: block; max-width: 100%; height: auto; }
+
+body {
+  font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", Arial, sans-serif;
+  color: #333;
+  background: #fff;
+  line-height: 1.6;
+}
+
+/* =======================
+   Header
+   ======================= */
+.site-header {
+  background: #76B55B;
+  color: #fff;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 16px;
+  border-bottom: none;
+  position: relative;
+}
+
+/* 画像を置く場合 */
+.header_img {
+  height: 36px;
+  width: auto;
+}
+
+/*
+  画像が無い場合にロゴが不自然に右に寄らないようにする。
+  - ロゴを中央寄せにしたいなら margin: 0 auto;
+  - 左寄せのままで良ければ、このルール自体を削除してOK
+*/
+.header-logo {
+  color: #fff;
+  font-weight: 700;
+  font-size: 18px;
+  text-decoration: none;
+  margin: 0 auto; /* ★中央寄せ */
+}
+.header-logo:hover { text-decoration: underline; }
+
+/* =======================
+   Main
+   ======================= */
+.container { max-width: 960px; margin: 24px auto; padding: 0 16px; }
+.main { padding: 16px 0; }
+
+.title {
+  font-size: 24px;
+  text-align: center;
+  margin: 0 0 16px;
+  color: #444;
+}
+
+.flash {
+  background: #fff9e6;
+  border: 1px solid #ffe08a;
+  padding: 8px 12px;
+  border-radius: 8px;
+  margin: 12px 0;
+}
+
+.upload-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 8px;
+}
+.file-label { font-size: 14px; }
+.upload-form input[type="file"] { margin-left: 8px; }
+
+.btn {
+  padding: 8px 14px;
+  border: 1px solid #ccc;
+  background: #fafafa;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.btn:hover { background: #f0f0f0; }
+
+.answer {
+  font-size: 18px;
+  text-align: center;
+  color: #444;
+  margin: 16px 0;
+  font-weight: 600;
+}
+
+.card {
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 12px;
+  padding: 16px;
+  margin-top: 20px;
+  position: relative;
+}
+.card-title { margin: 0 0 12px; font-size: 18px; text-align: center; }
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+}
+.item {
+  background: #fafafa;
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid #f0f0f0;
+}
+.preview { width: 100%; height: auto; object-fit: contain; }
+.item figcaption { margin-top: 8px; color: #666; font-size: 12px; text-align: center; }
+.dl { color: #0066cc; text-decoration: underline; }
+
+/* 任意：参考注記の表示（HTML側で <p class="note"> を入れたので、整えるなら） */
+.note {
+  margin: 12px 0 0;
+  font-size: 12px;
+  color: #666;
+  text-align: center;
+}
+
+/* =======================
+   Footer
+   ======================= */
+.footer {
+  background: #76B55B;
+  color: #fff;
+  text-align: center;
+  padding: 20px 16px;
+  border-top: none;
+}
+.footer a { color: #fff; }

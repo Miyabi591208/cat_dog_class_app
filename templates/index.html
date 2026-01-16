@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Cat vs Dog Classifier</title>
+  <!-- キャッシュ強い場合は ?v=2 等で更新 -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='stylesheet.css') }}?v=2" />
+</head>
+<body>
+  <!-- ===== Header ===== -->
+  <header class="site-header">
+    <!-- ヘッダー画像が不要なら削除。必要なら src を設定してください -->
+    <!-- <img class="header_img" src="{{ url_for('static', filename='logo.png') }}" alt="Logo" /> -->
+    <a class="header-logo" href="{{ url_for('upload_file') }}">Cat vs Dog Classifier</a>
+  </header>
+
+  <!-- ===== Main ===== -->
+  <main class="container main">
+    <h1 class="title">AIが送信された画像を「Cat / Dog」で判定します</h1>
+
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <div class="flash">
+          {% for msg in messages %}
+            <p>{{ msg }}</p>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+
+    <form class="upload-form" method="post" enctype="multipart/form-data">
+      <label class="file-label">
+        画像を選択してください（jpg / png / webp）
+        <input type="file" name="file" accept=".jpg,.jpeg,.png,.webp,image/jpeg,image/png,image/webp" required />
+      </label>
+      <button class="btn" type="submit">判定する</button>
+    </form>
+
+    {% if answer %}
+      <p class="answer">{{ answer }}</p>
+    {% endif %}
+
+    {% if image_url or vis_gray_url or vis_invert_url %}
+      <section class="card">
+        <h2 class="card-title">画像プレビュー</h2>
+
+        <div class="gallery">
+          {% if image_url %}
+          <figure class="item">
+            <img src="{{ image_url }}" alt="uploaded image" class="preview" />
+            <figcaption>
+              Original　
+              <a class="dl" href="{{ image_url }}" download>ダウンロード</a>
+            </figcaption>
+          </figure>
+          {% endif %}
+
+          {% if vis_gray_url %}
+          <figure class="item">
+            <img src="{{ vis_gray_url }}" alt="model input (200x200)" class="preview" />
+            <figcaption>モデル入力（200×200 / RGB / 正規化前の見た目）</figcaption>
+          </figure>
+          {% endif %}
+
+          {% if vis_invert_url %}
+          <figure class="item">
+            <img src="{{ vis_invert_url }}" alt="aspect ratio padded preview" class="preview" />
+            <figcaption>参考（縦横比維持 + パディングして200×200に整形）</figcaption>
+          </figure>
+          {% endif %}
+        </div>
+
+        <p class="note">
+          ※「モデル入力」は学習時と同じく 200×200 にリサイズした画像です。元画像が縦長・横長の場合、見た目が引き伸ばされます。
+        </p>
+      </section>
+    {% endif %}
+  </main>
+
+  <!-- ===== Footer ===== -->
+  <footer class="footer">
+    <small>© Cat vs Dog Classifier Demo</small>
+  </footer>
+</body>
+</html>
